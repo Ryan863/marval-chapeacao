@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
-import { Syne, Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { BUSINESS_INFO } from "@/data/amaral-data";
 
-const syne = Syne({
-  variable: "--font-heading",
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
+  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -117,14 +110,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${syne.variable} ${plusJakartaSans.variable}`}>
+    <html lang="pt-BR" className={outfit.variable}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-[#09090b] text-[#f4f4f5] antialiased selection:bg-rose-600 selection:text-white">
+      <body className="min-h-screen bg-[#09090b] text-[#f4f4f5] antialiased selection:bg-rose-600 selection:text-white font-sans">
         {children}
       </body>
     </html>
