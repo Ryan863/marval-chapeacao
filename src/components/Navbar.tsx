@@ -25,9 +25,9 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Início', href: '#inicio' },
     { label: 'Especialidades', href: '#servicos' },
-    { label: 'Chapeação & Funilaria', href: '#chapeacao' },
-    { label: 'Estética & Espelhamento', href: '#estetica' },
-    { label: 'Tradição (+30 Anos)', href: '#diferenciais' },
+    { label: 'Funilaria & Pintura', href: '#chapeacao' },
+    { label: 'Estética', href: '#estetica' },
+    { label: '+30 Anos', href: '#diferenciais' },
     { label: 'Localização', href: '#localizacao' },
   ];
 
@@ -36,30 +36,31 @@ export default function Navbar() {
       ref={navRef}
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
         isScrolled
-          ? 'bg-zinc-950/85 backdrop-blur-md border-b border-white/10 py-3.5 shadow-2xl shadow-black/50'
-          : 'bg-transparent py-5 border-b border-transparent'
+          ? 'bg-zinc-950/90 backdrop-blur-md border-b border-white/10 py-3 shadow-2xl shadow-black/60'
+          : 'bg-transparent py-4 sm:py-5 border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
+          
           {/* Logo Editorial */}
-          <Link href="#inicio" className="group flex flex-col">
-            <span className="text-xl sm:text-2xl font-extrabold tracking-wider text-white font-heading group-hover:text-zinc-200 transition-colors flex items-center gap-1.5">
+          <Link href="#inicio" className="group flex flex-col shrink-0">
+            <span className="text-lg sm:text-xl md:text-2xl font-black tracking-wider text-white font-heading group-hover:text-zinc-200 transition-colors flex items-center gap-1.5">
               ESTÉTICA AMARAL
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse shrink-0" />
             </span>
-            <span className="text-[10px] tracking-[0.22em] uppercase text-zinc-400 font-semibold">
+            <span className="text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-zinc-400 font-semibold">
               MARVAL • +30 ANOS DE TRADIÇÃO
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className="hidden xl:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs uppercase tracking-[0.16em] text-zinc-300 hover:text-white transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-rose-600 hover:after:w-full after:transition-all after:duration-300"
+                className="text-xs uppercase tracking-[0.14em] text-zinc-300 hover:text-white transition-colors py-1 whitespace-nowrap relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-rose-600 hover:after:w-full after:transition-all after:duration-300"
               >
                 {link.label}
               </a>
@@ -67,21 +68,21 @@ export default function Navbar() {
           </nav>
 
           {/* Right CTA */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
               href={BUSINESS_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white bg-zinc-900 border border-white/20 hover:border-white/50 hover:bg-zinc-800 transition-all duration-300 shadow-lg active:scale-95"
+              className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-zinc-900 border border-white/20 hover:border-white/50 hover:bg-zinc-800 transition-all duration-300 shadow-lg active:scale-95 whitespace-nowrap"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-rose-500 group-hover:scale-110 transition-transform" />
+              <MessageCircle className="w-3.5 h-3.5 text-rose-500 group-hover:scale-110 transition-transform shrink-0" />
               <span>Solicitar Orçamento</span>
-              <ArrowUpRight className="w-3 h-3 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-3 h-3 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex lg:hidden items-center gap-2">
+          {/* Mobile / Tablet Menu Button */}
+          <div className="flex xl:hidden items-center gap-2">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
@@ -96,7 +97,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-zinc-950/95 backdrop-blur-xl border-b border-white/10 px-6 py-6 transition-all duration-300">
+        <div className="xl:hidden bg-zinc-950/98 backdrop-blur-2xl border-b border-white/10 px-6 py-6 transition-all duration-300">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <a

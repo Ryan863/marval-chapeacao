@@ -1,52 +1,13 @@
 'use client';
 
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import { Star, ShieldCheck, Quote, CheckCircle, ThumbsUp } from 'lucide-react';
 import { METRICS, TESTIMONIALS, BUSINESS_INFO } from '@/data/amaral-data';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
-
 export default function SocialProofSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from('.proof-metric', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-
-      gsap.from('.proof-card', {
-        scrollTrigger: {
-          trigger: '.testimonial-grid',
-          start: 'top 85%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
-    },
-    { scope: containerRef }
-  );
-
   return (
     <section
       id="estetica"
-      ref={containerRef}
       className="relative py-24 sm:py-32 bg-[#09090b] border-t border-white/5 overflow-hidden"
     >
       {/* Background glow sutil */}
@@ -54,12 +15,12 @@ export default function SocialProofSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Bloco de Métricas Técnicas (Inspirado no Grid de Resultados da Referência) */}
+        {/* Bloco de Métricas Técnicas */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20">
           {METRICS.map((metric, idx) => (
             <div
               key={idx}
-              className="proof-metric p-6 sm:p-8 rounded-2xl bg-[#141417] border border-white/10 hover:border-white/25 transition-all duration-300"
+              className="p-6 sm:p-8 rounded-2xl bg-[#141417] border border-white/10 hover:border-white/25 transition-all duration-300 hover:-translate-y-1 shadow-lg"
             >
               <div className="text-3xl sm:text-5xl font-black text-white font-heading tracking-tight mb-2 flex items-center gap-2">
                 {metric.value}
@@ -97,7 +58,7 @@ export default function SocialProofSection() {
           {TESTIMONIALS.map((test, idx) => (
             <div
               key={idx}
-              className="proof-card rounded-2xl bg-[#141417] border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-white/20 transition-all duration-300 hover:-translate-y-1"
+              className="rounded-2xl bg-[#141417] border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-white/20 transition-all duration-300 hover:-translate-y-1 shadow-md"
             >
               <div>
                 {/* Estrelas & Ícone de Aspas */}
@@ -142,7 +103,7 @@ export default function SocialProofSection() {
         </div>
 
         {/* Faixa de Garantia & Google Review Banner */}
-        <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-6 sm:p-8 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-6 sm:p-8 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
             <div className="p-4 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
               <Star className="w-8 h-8 fill-amber-400" />
@@ -164,7 +125,7 @@ export default function SocialProofSection() {
             href={BUSINESS_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs uppercase tracking-wider border border-white/10 transition-colors"
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs uppercase tracking-wider border border-white/10 transition-colors shadow-md"
           >
             <ThumbsUp className="w-4 h-4 text-rose-400" />
             <span>Fazer Parte dos Clientes Satisfeitos</span>

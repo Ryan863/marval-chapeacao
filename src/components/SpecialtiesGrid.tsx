@@ -1,41 +1,14 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MessageCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import { SERVICES_CATALOG, BUSINESS_INFO } from '@/data/amaral-data';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
-
 export default function SpecialtiesGrid() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from('.service-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-    },
-    { scope: containerRef }
-  );
-
   return (
     <section
       id="servicos"
-      ref={containerRef}
       className="relative py-24 sm:py-32 bg-[#09090b] border-t border-white/5 overflow-hidden"
     >
       {/* Luz ambiente de fundo */}
@@ -58,7 +31,7 @@ export default function SpecialtiesGrid() {
           </p>
         </div>
 
-        {/* Grid de Serviços */}
+        {/* Grid de Serviços Visíveis e Interativos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {SERVICES_CATALOG.map((service) => {
             const waServiceUrl = `https://wa.me/${BUSINESS_INFO.phoneRaw}?text=${encodeURIComponent(
@@ -69,7 +42,7 @@ export default function SpecialtiesGrid() {
               <div
                 key={service.id}
                 id={service.id}
-                className="service-card group rounded-2xl bg-[#141417] border border-white/10 hover:border-white/25 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60"
+                className="service-card group rounded-2xl bg-[#141417] border border-white/10 hover:border-white/25 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/70"
               >
                 <div>
                   {/* Imagem do Serviço com Zoom no Hover */}
@@ -79,13 +52,13 @@ export default function SpecialtiesGrid() {
                       alt={service.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-[0.92] contrast-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#141417] via-transparent to-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#141417] via-transparent to-black/30" />
                     
                     {/* Badge da Categoria / Tag */}
-                    <div className="absolute top-4 left-4">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[11px] font-semibold tracking-wider uppercase text-zinc-200">
+                    <div className="absolute top-4 left-4 z-10">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[11px] font-semibold tracking-wider uppercase text-zinc-200">
                         {service.tag}
                       </span>
                     </div>
@@ -121,7 +94,7 @@ export default function SpecialtiesGrid() {
                     href={waServiceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-xs tracking-wider uppercase border border-white/10 hover:border-white/20 transition-all duration-200 group-hover:bg-rose-600 group-hover:border-rose-600"
+                    className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-xs tracking-wider uppercase border border-white/10 hover:border-white/20 transition-all duration-200 group-hover:bg-rose-600 group-hover:border-rose-600 shadow-md"
                   >
                     <span className="flex items-center gap-2">
                       <MessageCircle className="w-4 h-4 text-rose-400 group-hover:text-white" />
@@ -134,8 +107,8 @@ export default function SpecialtiesGrid() {
             );
           })}
 
-          {/* Card Destaque de Conversão Direta (Inspirado no Card de Ação do Max Color) */}
-          <div className="service-card rounded-2xl bg-gradient-to-br from-rose-950/80 via-zinc-900 to-[#141417] border border-rose-600/30 p-8 flex flex-col justify-between relative overflow-hidden group hover:border-rose-500/60 transition-all duration-300 hover:-translate-y-1">
+          {/* Card Destaque de Conversão Direta */}
+          <div className="service-card rounded-2xl bg-gradient-to-br from-rose-950/80 via-zinc-900 to-[#141417] border border-rose-600/30 p-8 flex flex-col justify-between relative overflow-hidden group hover:border-rose-500/60 transition-all duration-300 hover:-translate-y-1.5 shadow-xl">
             <div className="absolute -top-12 -right-12 w-48 h-48 bg-rose-600/20 rounded-full blur-3xl pointer-events-none" />
             
             <div>

@@ -1,41 +1,14 @@
 'use client';
 
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import { MapPin, Navigation, Clock, Phone, MessageCircle, ExternalLink } from 'lucide-react';
 import { InstagramIcon, FacebookIcon } from '@/components/icons/SocialIcons';
 import { BUSINESS_INFO } from '@/data/amaral-data';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
-
 export default function LocationSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from('.location-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.75,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
-    },
-    { scope: containerRef }
-  );
-
   return (
     <section
       id="localizacao"
-      ref={containerRef}
       className="relative py-24 sm:py-32 bg-[#09090b] border-t border-white/5 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -59,7 +32,7 @@ export default function LocationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Coluna 1: Dados de Localização, Endereço e Ação GPS */}
-          <div className="location-card lg:col-span-7 rounded-3xl bg-[#141417] border border-white/10 p-8 sm:p-10 flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-3xl bg-[#141417] border border-white/10 p-8 sm:p-10 flex flex-col justify-between shadow-2xl">
             <div className="space-y-8">
               
               {/* Bloco Endereço */}
@@ -149,10 +122,10 @@ export default function LocationSection() {
           </div>
 
           {/* Coluna 2: Redes Sociais & Vistoria Presencial */}
-          <div className="location-card lg:col-span-5 flex flex-col gap-6">
+          <div className="lg:col-span-5 flex flex-col gap-6">
             
             {/* Card Instagram & Portfólio */}
-            <div className="p-8 rounded-3xl bg-[#141417] border border-white/10 flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-[#141417] border border-white/10 flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-500/20">
@@ -182,7 +155,7 @@ export default function LocationSection() {
             </div>
 
             {/* Card Facebook Institucional */}
-            <div className="p-8 rounded-3xl bg-[#141417] border border-white/10 flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-[#141417] border border-white/10 flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
@@ -212,7 +185,7 @@ export default function LocationSection() {
             </div>
 
             {/* Região Atendida */}
-            <div className="p-6 rounded-3xl bg-zinc-900/60 border border-white/5">
+            <div className="p-6 rounded-3xl bg-zinc-900/60 border border-white/5 shadow-md">
               <span className="text-[11px] font-bold text-rose-400 uppercase tracking-widest block mb-2">
                 Atendimento Regional
               </span>

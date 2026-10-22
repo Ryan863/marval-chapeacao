@@ -1,36 +1,11 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 import { FAQ_LIST, BUSINESS_INFO } from '@/data/amaral-data';
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
-
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from('.faq-item', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 25,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-    },
-    { scope: containerRef }
-  );
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -39,7 +14,6 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      ref={containerRef}
       className="relative py-24 sm:py-32 bg-zinc-950 border-t border-white/5"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -67,7 +41,7 @@ export default function FAQSection() {
             return (
               <div
                 key={index}
-                className="faq-item rounded-2xl bg-[#141417] border border-white/10 hover:border-white/20 transition-all duration-200 overflow-hidden"
+                className="faq-item rounded-2xl bg-[#141417] border border-white/10 hover:border-white/20 transition-all duration-200 overflow-hidden shadow-sm"
               >
                 <button
                   type="button"
@@ -98,7 +72,7 @@ export default function FAQSection() {
         </div>
 
         {/* CTA complementar pós-FAQ */}
-        <div className="mt-12 text-center p-6 rounded-2xl bg-zinc-900/50 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 text-center p-6 rounded-2xl bg-zinc-900/50 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
           <div className="text-left">
             <h4 className="text-sm font-bold text-white">Ficou com alguma dúvida específica?</h4>
             <p className="text-xs text-zinc-400">Nossa equipe técnica atende diretamente no WhatsApp com prontidão.</p>
@@ -107,7 +81,7 @@ export default function FAQSection() {
             href={BUSINESS_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs tracking-wider uppercase transition-colors shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs tracking-wider uppercase transition-colors shrink-0 shadow-lg shadow-rose-950/40"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Falar com Técnico</span>

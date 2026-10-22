@@ -16,34 +16,30 @@ export default function HeroSection() {
 
   useGSAP(
     () => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const tl = gsap.timeline({
+        defaults: {
+          ease: 'power3.out',
+          clearProps: 'all',
+        },
+      });
 
       tl.from('.hero-badge', {
         y: 20,
         opacity: 0,
         duration: 0.7,
-        delay: 0.2,
+        delay: 0.1,
       })
         .from(
           '.hero-title',
           {
-            y: 35,
+            y: 30,
             opacity: 0,
-            duration: 0.9,
+            duration: 0.8,
           },
           '-=0.4'
         )
         .from(
           '.hero-sub',
-          {
-            y: 25,
-            opacity: 0,
-            duration: 0.8,
-          },
-          '-=0.5'
-        )
-        .from(
-          '.hero-ctas',
           {
             y: 20,
             opacity: 0,
@@ -52,14 +48,23 @@ export default function HeroSection() {
           '-=0.4'
         )
         .from(
+          '.hero-ctas',
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+          },
+          '-=0.3'
+        )
+        .from(
           '.hero-metrics',
           {
             y: 20,
             opacity: 0,
-            duration: 0.8,
-            stagger: 0.1,
+            duration: 0.7,
+            stagger: 0.08,
           },
-          '-=0.4'
+          '-=0.3'
         );
     },
     { scope: containerRef }
@@ -71,30 +76,32 @@ export default function HeroSection() {
       ref={containerRef}
       className="relative min-h-[100dvh] w-full flex flex-col justify-between overflow-hidden bg-[#09090b] pt-28 pb-8 lg:pb-12"
     >
-      {/* Background Image Oficial em Alta Definição */}
-      <div className="absolute inset-0 -z-10 w-full h-full">
+      {/* Background Photography Oficial com Visibilidade Garantida */}
+      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden pointer-events-none select-none">
         <Image
           src="/estetica/Gemini_Generated_Image_2cyq0a2cyq0a2cyq.jpg"
-          alt="Estética Automotiva Amaral - Veículo de Alta Performance em Chapeação e Polimento"
+          alt="Estética Automotiva Amaral - Veículo Supercar em Chapeação e Polimento"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right md:object-center transform scale-[1.02] transition-transform duration-1000"
+          className="object-cover object-right md:object-[right_center] brightness-[0.98] contrast-[1.05]"
         />
 
-        {/* Gradientes Direcionais de Contraste Editorial */}
-        {/* Degradê horizontal: protege leitura dos textos do lado esquerdo para o centro */}
-        <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/85 to-transparent" />
+        {/* Gradiente Lateral: preserva a leitura dos textos à esquerda e expõe o carro à direita */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-[#09090b] via-[#09090b]/85 md:via-[#09090b]/45 to-transparent" />
         
-        {/* Degradê vertical: escurece a base para os micro-indicadores e o topo para a navbar */}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-zinc-950/70" />
+        {/* Gradiente vertical no mobile para garantir leitura sem cobrir o desktop */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#09090b] via-transparent to-transparent md:hidden" />
 
-        {/* Brilho sutil esportivo vermelho no canto inferior direito */}
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Fusão inferior suave para a próxima seção */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 z-[1] bg-gradient-to-t from-[#09090b] via-[#09090b]/80 to-transparent" />
+
+        {/* Vinheta superior sutil para destacar a Navbar */}
+        <div className="absolute top-0 left-0 right-0 h-28 z-[1] bg-gradient-to-b from-[#09090b]/80 to-transparent" />
       </div>
 
       {/* Conteúdo Central da 1ª Dobra */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto z-10 relative">
         <div className="max-w-3xl">
           {/* Eyebrow Tag Técnica */}
           <div className="hero-badge inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
@@ -154,9 +161,9 @@ export default function HeroSection() {
       </div>
 
       {/* Micro-indicadores (Barra Inferior Editorial) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pt-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 relative pt-6">
         <div className="hero-metrics grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-white/10">
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-white/5 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/70 border border-white/10 backdrop-blur-md">
             <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400">
               <Award className="w-5 h-5" />
             </div>
@@ -166,7 +173,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-white/5 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/70 border border-white/10 backdrop-blur-md">
             <div className="p-2 rounded-lg bg-zinc-800 text-zinc-200">
               <ShieldCheck className="w-5 h-5" />
             </div>
@@ -176,7 +183,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-white/5 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/70 border border-white/10 backdrop-blur-md">
             <div className="p-2 rounded-lg bg-rose-500/10 text-rose-400">
               <Sparkles className="w-5 h-5" />
             </div>
@@ -186,7 +193,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-white/5 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/70 border border-white/10 backdrop-blur-md">
             <div className="p-2 rounded-lg bg-zinc-800 text-amber-400">
               <Star className="w-5 h-5 fill-amber-400" />
             </div>
